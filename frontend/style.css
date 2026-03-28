@@ -16,18 +16,45 @@
     position: absolute;
     top: 10px;
     right: 10px;
+
+    width: 200px;                    /* collapsed width */
+    height: 20px; 
+
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    padding: 12px 14px;
+
+    padding: 12px 8px;
     z-index: 1000;
     border-radius: 8px;
     font-size: 13px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    max-height: calc(100vh - 30px);
-    overflow-y: auto;
-    min-width: 200px;
+
+    overflow: hidden;
+
+    transition: width 0.3s ease, height 0.3s ease;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+#toolbar::before {
+    content: "◀ TOOLBAR";
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    font-size: 14px;
+    color: #333;
+    transition: transform 0.2s ease;
+}
+
+/* Flip arrow when expanded */
+#toolbar:hover::before {
+    content: "";
+}
+
+/* Expand on hover */
+#toolbar:hover {
+    width: 200px;
+    height: auto
 }
 
 .toolbar-section-title {
@@ -66,6 +93,21 @@
 .checkbox-label input {
     flex-shrink: 0;
     cursor: pointer;
+}
+
+/* Hide content when collapsed */
+#toolbar .toolbar-section,
+#toolbar .toolbar-divider {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Show content when expanded */
+#toolbar:hover .toolbar-section,
+#toolbar:hover .toolbar-divider {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ── Legend ─────────────────────────────────────────────────────────────────── */
