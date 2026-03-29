@@ -16,18 +16,34 @@
     position: absolute;
     top: 10px;
     right: 10px;
+
+    width: 200px;                    /* collapsed width */
+    height: 10px; 
+
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    padding: 12px 14px;
+
+    padding: 12px 8px;
     z-index: 1000;
     border-radius: 8px;
     font-size: 13px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    max-height: calc(100vh - 30px);
-    overflow-y: auto;
-    min-width: 200px;
+
+    overflow: hidden;
+
+    transition: height 0.3s ease;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.toolbar-header {
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+#toolbar:hover {
+    width: 200px;
+    height: auto
 }
 
 .toolbar-section-title {
@@ -68,8 +84,60 @@
     cursor: pointer;
 }
 
+/* Hide content when collapsed */
+#toolbar .toolbar-section,
+#toolbar .toolbar-divider {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Show content when expanded */
+#toolbar:hover .toolbar-section,
+#toolbar:hover .toolbar-divider {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── Toolbar Scroll Fix ── */
+#toolbar:hover {
+    max-height: 90vh;      /* prevent toolbar from overflowing screen */
+    overflow-y: auto;       /* allow scrolling if content too tall */
+}
+
+/* ── Search Input Styling ── */
+#toolbar input[type="text"] {
+    width: 100%;
+    max-width: 186px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    outline: none;
+}
+
+#toolbar input[type="text"]:focus {
+    border-color: #888;
+}
+
+/* ── Optional smooth scrollbar ── */
+#toolbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#toolbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+#toolbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 /* ── Legend ─────────────────────────────────────────────────────────────────── */
 .map-legend {
+    position: relative;
+    z-index: 1000;
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);

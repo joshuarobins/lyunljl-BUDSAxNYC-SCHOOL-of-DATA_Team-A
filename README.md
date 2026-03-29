@@ -1,4 +1,4 @@
-# Project Name Here
+# NYC Rent Visualization
 go to https://joshuarobins.github.io/lyunljl-BUDSAxNYC-SCHOOL-of-DATA_Team-A/frontend
 
 ### Team
