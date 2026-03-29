@@ -28,6 +28,12 @@ L.tileLayer('https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.jpg?key=Pom
 // Each field has: label, color ramp (low→high), breakpoints, and a formatter
 
 const fieldConfig = {
+    stabilization_effect: {
+        label: "Rent Control Effect",
+        colors: ['#FDDDBB', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'],
+        breaks: [2000, 2500, 3000, 3500, 4000],
+        format: v => v != null ? `$${Number(v).toLocaleString()}` : 'N/A'
+    },
     median_gross_rent: {
         label: "Median Gross Rent",
         colors: ['#FDDDBB', '#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'],
